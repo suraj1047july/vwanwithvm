@@ -1,11 +1,11 @@
 # Example terraform.tfvars file
 # Rename this to terraform.tfvars and fill in your actual values
 
-subscription_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # Replace with your Azure Subscription ID
+subscription_id = "7669d032-a274-4b10-8b8a-de2869f2596a"  # Replace with your Azure Subscription ID
 location        = "eastus"                                  # Change region if needed
-environment     = "prod"                                    # Change to dev, staging, etc
+environment     = "uat"                                    # Change to dev, staging, etc
 vm_username     = "azureuser"                              # VM admin username
-vm_password     = "YourSecurePassword123!@#"              # Change to strong password
+vm_password     = "Password123!@#"              # Change to strong password
 appgw_capacity  = 2                                         # Number of App Gateway instances
 firewall_sku    = "Standard"                               # Standard or Premium
 
