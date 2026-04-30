@@ -6,11 +6,16 @@ terraform {
       version = "~> 3.0"
     }
   }
+cloud {
+    organization = "terraform_learn_all_cloud"
+    workspaces {
+      name ="Disconnected-Env"
+    }
+}
 }
 
 provider "azurerm" {
   features {}
-  skip_provider_registration = false
 }
 
 # ==================== VARIABLES ====================
