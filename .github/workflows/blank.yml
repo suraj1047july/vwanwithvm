@@ -1,0 +1,99 @@
+name: Terraform CI/CD
+
+on:
+ pull_request:
+  branches:
+   - main
+ push:
+  branches:
+   - main
+env:
+  ARM_CLIENT_ID: ${{ secrets.ARM_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.ARM_CLIENT_SECRET }}
+  ARM_TENANT_ID: ${{ secrets.ARM_TENANT_ID }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.ARM_SUBSCRIPTION_ID }}
+
+jobs:
+
+ terraform-plan:
+  if: github.event_name == 'pull_request'
+  runs-on: ubuntu-latest
+
+  steps:
+
+  - name: Checkout Code
+    uses: actions/checkout@v4
+
+  # -------- Node Setup for Cortex --------
+  - name: Set up Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: 22
+
+  - name: Verify Node.js Version
+    run: node -v
+
+
+  # -------- Terraform Setup --------
+  - name: Setup Terraform
+    uses: hashicorp/setup-terraform@v3
+    with:
+      terraform_version: 1.8.5
+
+
+  - name: Terraform Login
+    run: |
+      mkdir -p ~/.terraform.d
+      echo '{"credentials":{"app.terraform.io":{"token":"${{ secrets.TF_API_TOKEN }}"}}}' > ~/.terraform.d/credentials.tfrc.json
+
+
+  - name: Terraform Init
+    run: terraform init
+
+
+  - name: Terraform Format Fix
+    run: terraform fmt -recursive
+
+
+  - name: Terraform Format Check
+    run: terraform fmt -check -recursive
+
+
+  - name: Terraform Validate
+    run: terraform validate
+
+
+  - name: Terraform Plan
+    run: terraform plan
+
+
+
+ terraform-apply:
+
+  if: github.event_name == 'push'
+  runs-on: ubuntu-latest
+
+  steps:
+
+  - name: Checkout Code
+    uses: actions/checkout@v4
+
+
+  - name: Setup Terraform
+    uses: hashicorp/setup-terraform@v3
+    with:
+      terraform_version: 1.8.5
+
+
+  - name: Terraform Login
+    run: |
+      mkdir -p ~/.terraform.d
+      echo '{"credentials":{"app.terraform.io":{"token":"${{ secrets.TF_API_TOKEN }}"}}}' > ~/.terraform.d/credentials.tfrc.json
+
+
+  - name: Terraform Init
+    run: terraform init
+
+
+  - name: Terraform Apply
+    run: terraform apply -auto-approve
