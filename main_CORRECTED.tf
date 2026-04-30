@@ -37,7 +37,6 @@ variable "environment" {
 variable "admin_username" {
   description = "VM admin username"
   type        = string
-  default     = "azureuser"
 }
 
 variable "admin_password" {
@@ -45,6 +44,7 @@ variable "admin_password" {
   type        = string
   sensitive   = true
 }
+
 # ================= RESOURCE GROUP =================
 
 resource "azurerm_resource_group" "main" {
