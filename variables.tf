@@ -1,20 +1,3 @@
-variable "subscription_id" {
-  description = "Azure Subscription ID"
-  type        = string
-  sensitive   = true
-}
-
-variable "location" {
-  description = "Azure Region for resources"
-  type        = string
-  default     = "eastus"
-}
-
-variable "environment" {
-  description = "Environment name (prod, dev, staging)"
-  type        = string
-  default     = "prod"
-}
 
 variable "vm_username" {
   description = "VM Administrator username"
