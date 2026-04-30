@@ -34,6 +34,17 @@ variable "environment" {
   default = "prod"
 }
 
+variable "admin_username" {
+  description = "VM admin username"
+  type        = string
+  default     = "azureuser"
+}
+
+variable "admin_password" {
+  description = "VM admin password"
+  type        = string
+  sensitive   = true
+}
 # ================= RESOURCE GROUP =================
 
 resource "azurerm_resource_group" "main" {
@@ -227,12 +238,16 @@ resource "azurerm_application_gateway" "main" {
     name     = "app1-setting"
     port     = 8080
     protocol = "Http"
+    cookie_based_affinity = "Disabled"
+    request_timeout       = 20
   }
 
   backend_http_settings {
     name     = "app2-setting"
     port     = 8081
     protocol = "Http"
+    cookie_based_affinity = "Disabled"
+    request_timeout       = 20
   }
 
   http_listener {
