@@ -169,11 +169,11 @@ resource "azurerm_firewall" "vwan_firewall" {
     virtual_hub_id  = azurerm_virtual_hub.vwan_hub.id
     public_ip_count = 1
   }
-}
 
   tags = {
     Environment = var.environment
   }
+}
 }
 
 # Firewall Policy
