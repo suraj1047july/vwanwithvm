@@ -36,12 +36,14 @@ variable "environment" {
 
 variable "admin_username" {
   description = "VM admin username"
+  default = "azureuser"
   type        = string
 }
 
 variable "admin_password" {
   description = "VM admin password"
   type        = string
+  default = "Admin@123456789"
   sensitive   = true
 }
 
