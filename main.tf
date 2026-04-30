@@ -159,14 +159,17 @@ resource "azurerm_public_ip" "firewall_pip" {
 }
 
 resource "azurerm_firewall" "vwan_firewall" {
-  name                = "fw-vwan-hub-${var.environment}"
+  name                = "fw-vwan"
   location            = var.location
   resource_group_name = azurerm_resource_group.vwan_rg.name
-  sku_name            = "AZFW_VHub"
+  sku_name            = "AZFW_Hub"
   sku_tier            = "Standard"
-  virtual_hub_id      = azurerm_virtual_hub.vwan_hub.id
 
-  public_ip_count = 1
+  virtual_hub {
+    virtual_hub_id  = azurerm_virtual_hub.vwan_hub.id
+    public_ip_count = 1
+  }
+}
 
   tags = {
     Environment = var.environment
