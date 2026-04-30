@@ -8,6 +8,7 @@ resource "azurerm_windows_virtual_machine" "vm_app1" {
   name                = "vm-app1-${var.environment}"
   location            = var.location
   resource_group_name = azurerm_resource_group.vwan_rg.name
+  size = "Standard_B2s"
   admin_username      = var.vm_username
   admin_password      = var.vm_password
 
@@ -53,6 +54,7 @@ resource "azurerm_windows_virtual_machine" "vm_app2" {
   name                = "vm-app2-${var.environment}"
   location            = var.location
   resource_group_name = azurerm_resource_group.vwan_rg.name
+  size = "Standard_B2s"
   admin_username      = var.vm_username
   admin_password      = var.vm_password
 
@@ -96,18 +98,18 @@ resource "azurerm_virtual_machine_extension" "vm2_extension" {
 # ==================== UPDATE APP GATEWAY BACKEND POOLS ====================
 
 # This resource updates the App Gateway with actual VM IPs
-resource "azurerm_application_gateway_backend_address_pool_address" "pool_app1" {
-  backend_address_pool_id = "${azurerm_application_gateway.app_gateway.id}/backendAddressPools/backend-app1"
-  ip_address              = azurerm_network_interface.nic_app1.private_ip_address
-  fqdn                    = null
+#resource "azurerm_application_gateway_backend_address_pool_address" "pool_app1" {
+ # backend_address_pool_id = "${azurerm_application_gateway.app_gateway.id}/backendAddressPools/backend-app1"
+#  ip_address              = azurerm_network_interface.nic_app1.private_ip_address
+#  fqdn                    = null
+#
+#  depends_on = [azurerm_application_gateway.app_gateway]
+#}
 
-  depends_on = [azurerm_application_gateway.app_gateway]
-}
+#resource "azurerm_application_gateway_backend_address_pool_address" "pool_app2" {
+#  backend_address_pool_id = "${azurerm_application_gateway.app_gateway.id}/backendAddressPools/backend-app2"
+#  ip_address              = azurerm_network_interface.nic_app2.private_ip_address
+#  fqdn                    = null
 
-resource "azurerm_application_gateway_backend_address_pool_address" "pool_app2" {
-  backend_address_pool_id = "${azurerm_application_gateway.app_gateway.id}/backendAddressPools/backend-app2"
-  ip_address              = azurerm_network_interface.nic_app2.private_ip_address
-  fqdn                    = null
-
-  depends_on = [azurerm_application_gateway.app_gateway]
-}
+#  depends_on = [azurerm_application_gateway.app_gateway]
+#}
