@@ -1,0 +1,74 @@
+# Azure Virtual WAN Architecture - Terraform Variables
+
+# ==================== REQUIRED ====================
+
+# Your Azure Subscription ID
+# Get this by running: az account show --query id
+subscription_id = "12345678-1234-1234-1234-123456789012"
+
+# VM Administrator Password
+# MUST contain: uppercase, lowercase, numbers, special characters
+# Minimum 12 characters
+admin_password = "P@ssw0rd!Azure2024#"
+
+# ==================== OPTIONAL (Defaults Provided) ====================
+
+# Resource Group Name (default: rg-vwan-prod)
+resource_group_name = "rg-vwan-prod"
+
+# Azure Region (default: eastus)
+# Other options: westus2, westeurope, eastus2, southcentralus, etc.
+location = "eastus"
+
+# Environment Name (default: prod)
+# Options: dev, staging, prod, test
+environment = "prod"
+
+# VM Admin Username (default: azureuser)
+admin_username = "azureuser"
+
+# ==================== HOW TO USE ====================
+#
+# 1. Copy this file: cp terraform.tfvars.example terraform.tfvars
+#
+# 2. Edit terraform.tfvars with your actual values:
+#    - subscription_id: Your Azure subscription ID
+#    - admin_password: Strong password for VMs
+#
+# 3. NEVER commit terraform.tfvars to git:
+#    echo "terraform.tfvars" >> .gitignore
+#
+# 4. Run Terraform:
+#    terraform init
+#    terraform plan
+#    terraform apply
+#
+# ==================== PASSWORD REQUIREMENTS ====================
+#
+# Your password MUST have:
+# - At least 12 characters
+# - At least 1 UPPERCASE letter (A-Z)
+# - At least 1 lowercase letter (a-z)
+# - At least 1 number (0-9)
+# - At least 1 special character (!@#$%^&*)
+#
+# ✅ Good examples:
+#   P@ssw0rd!2024
+#   MyP@ssw0rd#123
+#   Secure!Pass1234
+#
+# ❌ Bad examples (will fail):
+#   password123       (no uppercase, no special char)
+#   Password123       (no special char)
+#   Pass!             (too short)
+#
+# ==================== GET SUBSCRIPTION ID ====================
+#
+# Method 1: Azure CLI
+#   az account show --query id --output tsv
+#
+# Method 2: Azure Portal
+#   Home → Subscriptions → Copy the Subscription ID
+#
+# Method 3: Using PowerShell
+#   Get-AzSubscription | Select-Object -Property SubscriptionId
