@@ -304,10 +304,16 @@ resource "azurerm_application_gateway" "app_gateway" {
   # Backend Pools (Placeholder - will be updated with VM IPs)
   backend_address_pool {
     name = "backend-app1"
+    backend_addresses {
+    ip_address = azurerm_network_interface.nic_app1.private_ip_address
+  }
   }
 
   backend_address_pool {
     name = "backend-app2"
+     backend_addresses {
+    ip_address = azurerm_network_interface.nic_app2.private_ip_address
+  }
   }
 
   # Backend Settings
