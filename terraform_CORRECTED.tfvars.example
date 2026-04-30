@@ -4,7 +4,7 @@
 
 # Your Azure Subscription ID
 # Get this by running: az account show --query id
-subscription_id = "12345678-1234-1234-1234-123456789012"
+subscription_id = "7669d032-a274-4b10-8b8a-de2869f2596a"
 
 # VM Administrator Password
 # MUST contain: uppercase, lowercase, numbers, special characters
