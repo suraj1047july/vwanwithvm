@@ -174,7 +174,7 @@ resource "azurerm_firewall" "vwan_firewall" {
     Environment = var.environment
   }
 }
-}
+
 
 # Firewall Policy
 resource "azurerm_firewall_policy" "fw_policy" {
