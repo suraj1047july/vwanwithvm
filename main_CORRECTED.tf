@@ -207,6 +207,11 @@ resource "azurerm_application_gateway" "main" {
     capacity = 2
   }
 
+  ssl_policy {
+    policy_type = "Predefined"
+    policy_name = "AppGwSslPolicy20220101"
+  }
+
   gateway_ip_configuration {
     name      = "gwconfig"
     subnet_id = azurerm_subnet.appgw.id
