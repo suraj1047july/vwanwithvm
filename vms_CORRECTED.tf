@@ -5,6 +5,7 @@ resource "azurerm_windows_virtual_machine" "app1" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   size                = "Standard_B1s"
+  zone = 1
 
   admin_username = var.admin_username
   admin_password = var.admin_password
@@ -37,6 +38,7 @@ resource "azurerm_windows_virtual_machine" "app2" {
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   size                = "Standard_B1s"
+  zone = 1
 
   admin_username = var.admin_username
   admin_password = var.admin_password
