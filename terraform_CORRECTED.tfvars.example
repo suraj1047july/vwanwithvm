@@ -1,0 +1,7 @@
+
+subscription_id = "7669d032-a274-4b10-8b8a-de2869f2596a"
+resource_group_name = "rg-vwan-prod"
+location = "eastus"
+environment = "uat"
+admin_username = "azureuser"
+admin_password = "Admin@123456789"
