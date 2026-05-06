@@ -20,7 +20,7 @@ provider "azurerm" {
   features {}
 }
 
-================= VARIABLES =================
+# ================= VARIABLES =================
 
 variable "resource_group_name" {
   default = "rg-vwan-prod"
