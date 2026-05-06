@@ -4,7 +4,7 @@ resource "azurerm_windows_virtual_machine" "app1" {
   name                = "vm-app1-${var.environment}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  size                = "Standard_B1s"
+  size                = "Standard_D2as_v5"
   zone = 1
 
   admin_username = var.admin_username
@@ -37,7 +37,7 @@ resource "azurerm_windows_virtual_machine" "app2" {
   name                = "vm-app2-${var.environment}"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
-  size                = "Standard_B1s"
+  size                = "Standard_D2as_v5"
   zone = 1
 
   admin_username = var.admin_username
